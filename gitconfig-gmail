@@ -1,0 +1,5 @@
+[user]
+	email = email@gmail.com
+	name = Full Name
+[core]
+	sshCommand = ssh -i ~/.ssh/id_rsa_file
