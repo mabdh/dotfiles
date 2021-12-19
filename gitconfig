@@ -1,0 +1,4 @@
+[includeIf "gitdir:~/codes/company/"]
+  path = .gitconfig-company
+[includeIf "gitdir:~/repo/"]
+  path = .gitconfig-gmail
