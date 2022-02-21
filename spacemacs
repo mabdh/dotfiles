@@ -32,8 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(sql
-     yaml
+   '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -44,21 +43,22 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-sort-by-usage t)
      better-defaults
-    ;; (clojure :variables
-    ;;          ;; clojure-backend 'cider               ;; use cider and disable lsp
-    ;;          ;; clojure-enable-linters 'clj-kondo    ;; clj-kondo included in lsp
-    ;;          clojure-enable-kaocha-runner t          ;; enable Kaocha test runner
-    ;;          cider-repl-display-help-banner nil      ;; disable help banner
-    ;;          cider-print-fn 'puget                   ;; pretty printing with sorted keys / set values
-    ;;          clojure-indent-style 'align-arguments
-    ;;          clojure-align-forms-automatically t
-    ;;          clojure-toplevel-inside-comment-form t  ;; evaluate expressions in comment as top level
-    ;;          cider-result-overlay-position 'at-point ;; results shown right after expression
-    ;;          cider-overlays-use-font-lock t
-    ;;          cider-repl-buffer-size-limit 100)        ;; limit lines shown in REPL buffer
+     bm
+     ;; (clojure :variables
+     ;;          ;; clojure-backend 'cider               ;; use cider and disable lsp
+     ;;          ;; clojure-enable-linters 'clj-kondo    ;; clj-kondo included in lsp
+     ;;          clojure-enable-kaocha-runner t          ;; enable Kaocha test runner
+     ;;          cider-repl-display-help-banner nil      ;; disable help banner
+     ;;          cider-print-fn 'puget                   ;; pretty printing with sorted keys / set values
+     ;;          clojure-indent-style 'align-arguments
+     ;;          clojure-align-forms-automatically t
+     ;;          clojure-toplevel-inside-comment-form t  ;; evaluate expressions in comment as top level
+     ;;          cider-result-overlay-position 'at-point ;; results shown right after expression
+     ;;          cider-overlays-use-font-lock t
+     ;;          cider-repl-buffer-size-limit 100)        ;; limit lines shown in REPL buffer
      (colors :variables
-              ;; colors-colorize-identifiers 'all
-              colors-enable-nyan-cat-progress-bar (display-graphic-p))
+             ;; colors-colorize-identifiers 'all
+             colors-enable-nyan-cat-progress-bar (display-graphic-p))
      command-log
      csv
      emacs-lisp
@@ -98,7 +98,6 @@ This function should only modify configuration layer settings."
           ;; org-enable-reveal-js-support t
           org-want-todo-bindings t
           org-enable-org-journal-support t
-          org-journal-dir (format "%s/%s" org-directory "projects/journal")
           org-journal-file-format "%Y-%m-%d"
           org-journal-date-prefix "#+TITLE: "
           org-journal-date-format "%A, %B %d %Y"
@@ -117,9 +116,9 @@ This function should only modify configuration layer settings."
             multi-term-program "/bin/zsh"
             shell-default-height 30
             shell-default-position 'bottom)
-     ;; spacemacs-layouts layer added to set variables
-     ;; SPC TAB restricted to current layout buffers
-     ;; Kill buffers when killing layer - SPC l x
+         ;; spacemacs-layouts layer added to set variables
+         ;; SPC TAB restricted to current layout buffers
+         ;; Kill buffers when killing layer - SPC l x
      (spacemacs-layouts :variables
                         spacemacs-layouts-restrict-spc-tab t
                         persp-autokill-buffer-on-remove 'kill-weak)
@@ -131,10 +130,11 @@ This function should only modify configuration layer settings."
                          doom-modeline-minor-modes nil
                          doom-modeline-modal-icon nil)
      spell-checking
+     sql
      (syntax-checking :variables
                       syntax-checking-use-original-bitmaps t)
-     ;; Visual file manager - `SPC p t'
-     ;; treemacs-no-png-images t removes file and directory icons
+         ;; Visual file manager - `SPC p t'
+         ;; treemacs-no-png-images t removes file and directory icons
      (treemacs :variables
                treemacs-indentation 1
                treemacs-use-filewatch-mode t
@@ -162,8 +162,7 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '(
-     doom-themes
+   '(doom-themes
      org-bullets
      org-reverse-datetree
      org-starter
@@ -669,12 +668,16 @@ before packages are loaded."
         '(("~/.emacs.d"  . 0)
           ("~/repo" . 2)))
   (global-set-key [f5] 'revert-buffer)
+
   ;;;;;;;;;;;;
   ;; org
   (setq org-directory "/Volumes/GoogleDrive/My Drive/SharedWithMeG/notes")
 
   (with-eval-after-load 'org
     (setq org-default-notes-file (format "%s/%s" org-directory "todolist.org")))
+
+  (with-eval-after-load 'org
+    (setq org-journal-dir (format "%s/%s" org-directory "projects/journal")))
 
   (setq org-agenda-files (directory-files-recursively org-directory "\.org$"))
   (with-eval-after-load 'org
