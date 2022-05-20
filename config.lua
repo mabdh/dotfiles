@@ -62,6 +62,19 @@ vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<F6>"] = ":VimtexCompile<CR>"
+
+
+-- Customization
+-- ===================================
+
+lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
+lvim.builtin.dap.active = true -- change this to enable/disable debugging
+lvim.builtin.latex = {
+    view_method = "skim", -- change to zathura if you are on linux
+    preview_exec = "/Applications/Skim.app/Contents/SharedSupport/displayline", -- change this to zathura as well
+    rtl_support = true, -- if you want to use xelatex, it's a bit slower but works very well for RTL langs
+}
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
@@ -391,6 +404,10 @@ lvim.plugins = {
             require("zk").setup()
         end
     },
+    {
+        "lervag/vimtex",
+        ft = "tex",
+    },
 }
 -- lvim.plugins = {
 --     {"folke/tokyonight.nvim"},
@@ -407,4 +424,5 @@ lvim.autocommands.custom_groups = {
     { "BufWritePre", "*.go", ":silent! lua require('go.format').goimport()" },
     { "FileType", "*.go", "<Leader><Leader>l GoLint" },
     { "FileType", "*.go", "<Leader>gc :lua require('go.comment').gen()" },
+    { "BufWinEnter", "*.tex", "setlocal ts=2 sw=2" },
 }
