@@ -6,6 +6,7 @@ end
 for _, source in ipairs({
 	"options",
 	"bootstrap",
+	"keymaps",
 	-- "core.plugins",
 	--  "core.autocmds",
 	--  "core.mappings",

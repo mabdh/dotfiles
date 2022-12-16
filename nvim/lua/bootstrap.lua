@@ -14,17 +14,17 @@ local packer_bootstrap = ensure_packer()
 local function bootstrap_lsp(use) end
 local function bootstrap_ide(use)
 	use({
-		"kyazdani42/nvim-tree.lua",
-		config = function()
-			require("configs.nvimtree")
-		end,
-	})
-
-	use({
 		"kyazdani42/nvim-web-devicons",
 		event = "VimEnter",
 		config = function()
 			-- require("configs.icons")
+		end,
+	})
+
+	use({
+		"kyazdani42/nvim-tree.lua",
+		config = function()
+		  require("configs.nvimtree")
 		end,
 	})
 
@@ -40,20 +40,13 @@ local function bootstrap_ide(use)
 		"rcarriga/nvim-notify",
 		event = "VimEnter",
 		config = function()
-			require("configs.notify")
-		end,
-	})
-
-	use({
-		"kyazdani42/nvim-tree.lua",
-		config = function()
-			-- require("configs.nvimtree")
+			-- require("configs.notify")
 		end,
 	})
 
 	use({"nvim-lualine/lualine.nvim",
 		  config = function()
-		    require "configs.lualine"
+		   -- require "configs.lualine"
 		  end,
 		})
 end
@@ -68,12 +61,17 @@ return require("packer").startup(function(use)
 		module = "plenary",
 	})
 
+	use { "Tastyep/structlog.nvim" }
+
 	use({
 		"EdenEast/nightfox.nvim",
 		config = function()
 			vim.cmd("colorscheme nightfox")
 		end,
 	})
+
+	bootstrap_ide(use)
+	bootstrap_lsp(use)
 
 	if packer_bootstrap then
 		require("packer").sync()

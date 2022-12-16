@@ -1,2 +1,3 @@
-nvim/.netrwhist
-nvim/plugin/packer_compiled.vim
+**.log
+packer_compiled.lua
+**/.DS_Store
