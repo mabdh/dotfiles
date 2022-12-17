@@ -4,11 +4,24 @@ lvim.plugins = {
     cmd = "TroubleToggle",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
-      require("plugins/trouble")
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
     end
   },
-  { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
+  {
+    'ray-x/navigator.lua',
+    requires = {
+      { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
+      { 'neovim/nvim-lspconfig' },
+    },
+  },
   { "ray-x/go.nvim",
+    requires = {
+      "folke/trouble.nvim",
+    },
     config = function()
       require('go').setup({
         goimport = 'goimports', -- goimport command
