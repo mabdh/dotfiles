@@ -6,20 +6,9 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=jso
 vim.cmd([[let g:terraform_fmt_on_save=1]])
 vim.cmd([[let g:terraform_align=1]])
 
-lvim.autocommands.custom_groups = {
-  { "BufWritePre", "*.go", ":silent! lua require('go.format').goimport()" }
-}
 
-local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    require('go.format').goimport()
-  end,
-  group = format_sync_grp,
-})
-vim.cmd("autocmd FileType go nmap <Leader><Leader>l GoLint")
-vim.cmd("autocmd FileType go nmap <Leader>gc :lua require('go.comment').gen()")
+-- vim.cmd("autocmd FileType go nmap <Leader><Leader>l GoLint")
+-- vim.cmd("autocmd FileType go nmap <Leader>gc :lua require('go.comment').gen()")
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.json", "*.jsonc" },
