@@ -1,8 +1,5 @@
-(module config.plugin.autopairs
-  {autoload {autopairs nvim-autopairs}})
+(module config.plugin.autopairs {autoload {autopairs nvim-autopairs}})
 
 ;; https://github.com/windwp/nvim-autopairs
 
-(autopairs.setup
- {})
-
+(autopairs.setup {})

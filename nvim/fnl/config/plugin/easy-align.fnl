@@ -1,5 +1,4 @@
-(module config.plugin.easy-align
-  {autoload {nvim aniseed.nvim}})
+(module config.plugin.easy-align {autoload {nvim aniseed.nvim}})
 
 ;start interactive EasyAlign in visual mode (e.g. vipga)
 (nvim.set_keymap :x :<leader>ea "<Plug>(EasyAlign)" {})

@@ -1,5 +1,4 @@
-(module config.plugin.fugitive
-  {autoload {util config.util}})
+(module config.plugin.fugitive {autoload {util config.util}})
 
 ;; (util.lnnoremap :gs "Git")
 ;; (util.lnnoremap :gb "Git blame")

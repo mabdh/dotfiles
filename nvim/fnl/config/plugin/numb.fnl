@@ -1,5 +1,4 @@
-(module config.plugin.numb
-  {autoload {numb numb}})
+(module config.plugin.numb {autoload {numb numb}})
 
 ;; https://github.com/nacro90/numb.nvim
 

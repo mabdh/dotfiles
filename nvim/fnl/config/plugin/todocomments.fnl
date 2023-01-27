@@ -1,5 +1,4 @@
-(module config.plugin.todocomments
-  {autoload {todos todo-comments}})
+(module config.plugin.todocomments {autoload {todos todo-comments}})
 
 ;; https://github.com/folke/todo-comments.nvim
 ;; PERF: performance review
@@ -11,18 +10,13 @@
 ;; WARN: warning
 ;; DRAGONS: here be dragons
 
-(todos.setup
- {;; Show todo icons in the gutter
-  :signs true
-  ;; Priority of display in gutter, 1-9, highest number wins
-  :sign_priority 5
-
-  ;; match keywords in comments only
-  :comments_only true
-
-  ;; Customisation of todo, adding alternate match and icon
-  :keywords
-  {:TODO {:icon ""}
-   :DONE {:icon ""}
-   :WARN {:icon ""
-          :alt ["WARNING" "XXX" "DRAGONS"]}}})
+(todos.setup {;; Show todo icons in the gutter
+              :signs true
+              ;; Priority of display in gutter, 1-9, highest number wins
+              :sign_priority 5
+              ;; match keywords in comments only
+              :comments_only true
+              ;; Customisation of todo, adding alternate match and icon
+              :keywords {:TODO {:icon ""}
+                         :DONE {:icon ""}
+                         :WARN {:icon "" :alt [:WARNING :XXX :DRAGONS]}}})

@@ -1,5 +1,4 @@
-(module config.plugin.orgmode
-  {autoload {orgmode orgmode}})
+(module config.plugin.orgmode {autoload {orgmode orgmode}})
 
 ;; https://github.com/nvim-orgmode/orgmode#setup
 
@@ -8,6 +7,5 @@
 ;; TODO: add orgmode as nvim-cmp source
 ;; orgmode highlight, indent and ensure_installed set in treesitter.fnl configuration
 
-(orgmode.setup
- {:org_agenda_files {"~/Documents/org/*" "~/projects/**/*"}
-  :org_default_notes_file  "~/Documents/org/refile.org"})
+(orgmode.setup {:org_agenda_files {"~/Documents/org/*" "~/projects/**/*"}
+                :org_default_notes_file "~/Documents/org/refile.org"})

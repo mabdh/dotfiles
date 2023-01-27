@@ -1,7 +1,5 @@
-(module config.plugin.trouble
-  {autoload {trouble trouble}})
+(module config.plugin.trouble {autoload {trouble trouble}})
 
 ;; https://github.com/folke/trouble.nvim
 
-(trouble.setup
- {})
+(trouble.setup {})

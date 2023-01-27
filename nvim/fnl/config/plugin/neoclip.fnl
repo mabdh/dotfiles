@@ -1,11 +1,7 @@
-(module config.plugin.neoclip
-  {autoload {neoclip neoclip}})
+(module config.plugin.neoclip {autoload {neoclip neoclip}})
 
 ;; https://github.com/pwntester/octo.nvim#%EF%B8%8F-configuration
 
-(neoclip.setup
- {})
-
-
+(neoclip.setup {})
 
 ;; AckslD/nvim-neoclip.lua

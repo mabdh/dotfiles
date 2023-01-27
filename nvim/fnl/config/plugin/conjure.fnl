@@ -1,5 +1,4 @@
-(module config.plugin.conjure
-  {autoload {nvim aniseed.nvim}})
+(module config.plugin.conjure {autoload {nvim aniseed.nvim}})
 
 ;; TODO: review conjure options
 
@@ -28,7 +27,6 @@
 ;; Help: |conjure-client-janet-netrepl|
 ;; Default: `"conjure.client.janet.netrepl"`
 ;; (set nvim.g.conjure#filetype#janet :conjure.client.janet.netrepl)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Evaluation
@@ -119,15 +117,15 @@
 
 ;; Evaluate form under the cursor & inserts result as comment.
 ;; Default: `"ece"`
-(set nvim.g.conjure#mapping#eval_comment_current_form "ece")
+(set nvim.g.conjure#mapping#eval_comment_current_form :ece)
 
 ;; Evaluate root form under the cursor
 ;; Default: `"er"`
-(set nvim.g.conjure#mapping#eval_root_form "ef")
+(set nvim.g.conjure#mapping#eval_root_form :ef)
 
 ;; Evaluate root form under the cursor & insert result as comment
 ;; Default: `"ecr"`
-(set nvim.g.conjure#mapping#eval_comment_root_form "ecf")
+(set nvim.g.conjure#mapping#eval_comment_root_form :ecf)
 
 ;; Evaluate word under cursor
 ;; Default: `"ew"`
@@ -151,7 +149,7 @@
 
 ;; Evaluate file loaded from disk
 ;; Default: `"ef"`
-(set nvim.g.conjure#mapping#eval_file "el")
+(set nvim.g.conjure#mapping#eval_file :el)
 
 ;; Evaluates the buffer from memory.
 ;; Default: `"eb"`
@@ -165,7 +163,6 @@
 ;; Default: `"E"`
 ;; (set nvim.g.conjure#mapping#eval_motion "eE")
 
-
 ;; TODO: review conjure bindings with respect to LSP
 
 ;; Jump to definition of the word under the cursor.
@@ -175,7 +172,6 @@
 ;; Documentation for word under cursor
 ;; Default: `["K"]`
 ;; (set nvim.g.conjure#mapping#doc_word "K")
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Visual aspects
@@ -222,7 +218,7 @@
 ;; Preferred corner position for the HUD, over-ridden by HUD cursor detection
 ;; Example: Set to `"SE"` and HUD width to `1.0` for full width HUD at bottom of screen
 ;; Default: `"NE"`
-(set nvim.g.conjure#log#hud#anchor "SE")
+(set nvim.g.conjure#log#hud#anchor :SE)
 
 ;; HUD border style - see `border` parameter in `:h nvim_open_win()`
 ;; `"none"` for no border
@@ -330,7 +326,6 @@
 ;; Default: `false`
 ;; (set nvim.g.conjure#debug false)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Conjure Client Clojure nrepl configuration
 
@@ -350,7 +345,6 @@
 ;; Conjure checks every directory above your current one as well as `~/.config/conjure`, so you can place a default `.nrepl-port`file in there to always have a default port to attempt.
 ;; Default: `[".nrepl-port" ".shadow-cljs/nrepl.port"]`
 ;; (set nvim.g.conjure#client#clojure#nrepl#connection#port_files [".nrepl-port" ".shadow-cljs/nrepl.port"])
-
 
 ;; Start "auto-repl" process, eg. babashka
 ;; when Conjure unable to find candidate REPL process via to an existing nREPL connection
@@ -428,7 +422,6 @@
 ;; Default: `nil`
 ;; (set nvim.g.conjure#client#clojure#nrepl#refresh#dirs nil)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Unit tests
 
@@ -441,7 +434,7 @@
 ;; * `"clojurescript" (cljs.test instead of clojure.test)`
 ;; * `"kaocha"`
 ;; Default: `"clojure"`
-(set nvim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
+(set nvim.g.conjure#client#clojure#nrepl#test#runner :kaocha)
 
 ;; Print raw test evaluation result, suppressing prefix for stdout lines `; (out)`
 ;; Default: `true`
@@ -454,7 +447,6 @@
 ;; This string is inserted into the code as is, so you can insert Clojure code to add conditional logic
 ;; Default: `nil`
 ;; (set nvim.g.conjure#client#clojure#nrepl#test#call_suffix nil)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Key bindings (mappings)
