@@ -64,7 +64,7 @@
                                     :w [":Telescope diagnostics<cr>"
                                         :Diagnostics]
                                     :f [vim.lsp.buf.format :Format]
-                                    :i [":LspInfo<cr>" :Info]
+                                    :i [:<cmd>LspInfo<cr> :Info]
                                     :I [":Mason<cr>" "Mason Info"]
                                     :j [vim.diagnostic.goto_next
                                         "Next Diagnostic"]

@@ -1,5 +1,11 @@
 lvim.plugins = {
   {
+    "windwp/nvim-spectre",
+    config = function()
+      require("plugins/spectre")
+    end
+  },
+  {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
     requires = "kyazdani42/nvim-web-devicons",
@@ -10,6 +16,29 @@ lvim.plugins = {
         -- refer to the configuration section below
       }
     end
+  },
+  { "simrat39/rust-tools.nvim" },
+  {
+    "saecki/crates.nvim",
+    tag = "v0.3.0",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("crates").setup {
+        null_ls = {
+          enabled = true,
+          name = "crates.nvim",
+        },
+        popup = {
+          border = "rounded",
+        },
+      }
+    end,
+  },
+  {
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup()
+    end,
   },
   {
     'ray-x/navigator.lua',
@@ -169,4 +198,22 @@ lvim.plugins = {
       vim.cmd [[packadd telescope.nvim]]
     end,
   },
+  {
+    "princejoogie/tailwind-highlight.nvim",
+  },
+  {
+    "clojure-vim/clojure.vim"
+  },
+  {
+    "clojure-vim/vim-jack-in"
+  },
+  {
+    "Olical/conjure",
+    config = function()
+      require('plugins/conjure')
+    end,
+  },
+  {
+    "PaterJason/cmp-conjure"
+  }
 }

@@ -4,6 +4,9 @@ lvim.lsp.installer.setup.ensure_installed = {
   "sumneko_lua",
   "jsonls",
 }
+
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
+
 -- -- change UI setting of `LspInstallInfo`
 -- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
 -- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
@@ -28,15 +31,22 @@ lvim.lsp.installer.setup.ensure_installed = {
 --   return server ~= "emmet_ls"
 -- end, lvim.lsp.automatic_configuration.skipped_servers)
 
--- -- you can set a custom on_attach function that will be used for all the language servers
--- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
+-- you can set a custom on_attach function that will be used for all the language servers
+-- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
+lvim.lsp.on_attach_callback = function(client, bufnr)
+  local function buf_set_option(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  local tw_highlight = require('tailwind-highlight')
+  tw_highlight.setup(client, bufnr, {
+        single_column = false,
+        mode = 'background',
+        debounce = 200,
+      })
+end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 -- local formatters = require "lvim.lsp.null-ls.formatters"

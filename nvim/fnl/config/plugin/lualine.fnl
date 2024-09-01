@@ -3,8 +3,9 @@
                    lualine lualine
                    lsp config.plugin.lspconfig}})
 
-(defn lsp_connection [] (if (vim.tbl_isempty (vim.lsp.buf_get_clients 0)) ""
-                            ""))
+(defn lsp_connection
+  []
+  (if (vim.tbl_isempty (vim.lsp.buf_get_clients 0)) "" ""))
 
 ;; (def github-lua-theme
 ;;   (core.assoc

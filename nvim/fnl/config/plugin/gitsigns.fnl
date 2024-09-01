@@ -24,6 +24,12 @@
                                         :linehl :GitSignsChangeLn}}
                  ;; TODO: blame formatter key expects function
                  ;; :current_line_blame_formatter "<author>, <author_time:%Y-%m-%d> - <summary>"
+                 ;; TODO: blame formatter key expects function
+                 ;; :current_line_blame_formatter "<author>, <author_time:%Y-%m-%d> - <summary>"
+                 ;; TODO: blame formatter key expects function
+                 ;; :current_line_blame_formatter "<author>, <author_time:%Y-%m-%d> - <summary>"
+                 ;; TODO: blame formatter key expects function
+                 ;; :current_line_blame_formatter "<author>, <author_time:%Y-%m-%d> - <summary>"
                  :sign_priority 6
                  ;; Highlighting changes
                  ;; Add signs in Neovim gutter (over-rides other signs and numbers if signcolumn set to number)
@@ -47,6 +53,12 @@
                                            ;; :eol | :overlay | :right_align
                                            :delay 1000
                                            :ignore_whitespace false}
+                 ;; TODO: blame formatter key expects function
+                 ;; :current_line_blame_formatter "<author>, <author_time:%Y-%m-%d> - <summary>"
+                 ;; TODO: blame formatter key expects function
+                 ;; :current_line_blame_formatter "<author>, <author_time:%Y-%m-%d> - <summary>"
+                 ;; TODO: blame formatter key expects function
+                 ;; :current_line_blame_formatter "<author>, <author_time:%Y-%m-%d> - <summary>"
                  ;; TODO: blame formatter key expects function
                  ;; :current_line_blame_formatter "<author>, <author_time:%Y-%m-%d> - <summary>"
                  :sign_priority 6

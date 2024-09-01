@@ -3,17 +3,15 @@
 
 ;; Sources for autocompletion
 
-(def- cmp-src-menu-items {:buffer :buff
-                          :conjure :conj
-                          :nvim_lsp :lsp
-                          :vsnip :vsnp
-                          :luasnip :lsnp})
+(def- cmp-src-menu-items
+  {:buffer :buff :conjure :conj :nvim_lsp :lsp :vsnip :vsnp :luasnip :lsnp})
 
-(def- cmp-srcs [{:name :nvim_lsp}
-                {:name :conjure}
-                {:name :buffer}
-                {:name :vsnip}
-                {:name :luasnip}])
+(def- cmp-srcs
+  [{:name :nvim_lsp}
+   {:name :conjure}
+   {:name :buffer}
+   {:name :vsnip}
+   {:name :luasnip}])
 
 (fn has-words-before []
   (let [(line col) (unpack (vim.api.nvim_win_get_cursor 0))]

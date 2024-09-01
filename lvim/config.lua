@@ -28,6 +28,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
   "go",
+  "gomod",
   "javascript",
   "json",
   "lua",
@@ -39,7 +40,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "java",
   "yaml",
 }
-
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 lvim.builtin.treesitter.rainbow.enable = true

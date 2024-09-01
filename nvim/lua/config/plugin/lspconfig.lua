@@ -60,6 +60,7 @@ do
   lsp.fennel_language_server.setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities})
   lsp.gopls.setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities})
   lsp.clangd.setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities})
+  lsp.rust_analyzer.setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities})
   lsp.tsserver.setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities})
   lsp.cssls.setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities, cmd = {"vscode-css-languageserver", "--stdio"}})
   lsp.html.setup({on_attach = on_attach, handlers = handlers, capabilities = capabilities, cmd = {"vscode-html-languageserver", "--stdio"}})

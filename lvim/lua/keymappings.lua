@@ -51,5 +51,15 @@ lvim.builtin.which_key.mappings["t"] = {
   l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
   r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 }
-
-
+lvim.builtin.which_key.mappings["R"] = {
+  name = " Replace",
+  f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Current Buffer" },
+  p = { "<cmd>lua require('spectre').open()<cr>", "Project" },
+  w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
+  s = {
+    function()
+      require("ssr").open()
+    end,
+    "Structural replace",
+  },
+}

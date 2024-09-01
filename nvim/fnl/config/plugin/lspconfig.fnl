@@ -6,15 +6,16 @@
 
 ;; gutter icons for lsp diagnostics
 ;; :help vim.lsp.diagnostic.set_signs
-(defn define-signs [prefix]
-      (let [error (.. prefix :SignError)
-            warn (.. prefix :SignWarn)
-            info (.. prefix :SignInfo)
-            hint (.. prefix :SignHint)]
-        (vim.fn.sign_define error {:text "" :texthl error})
-        (vim.fn.sign_define warn {:text "" :texthl warn})
-        (vim.fn.sign_define info {:text "" :texthl info})
-        (vim.fn.sign_define hint {:text "" :texthl hint})))
+(defn define-signs
+  [prefix]
+  (let [error (.. prefix :SignError)
+        warn (.. prefix :SignWarn)
+        info (.. prefix :SignInfo)
+        hint (.. prefix :SignHint)]
+    (vim.fn.sign_define error {:text "" :texthl error})
+    (vim.fn.sign_define warn {:text "" :texthl warn})
+    (vim.fn.sign_define info {:text "" :texthl info})
+    (vim.fn.sign_define hint {:text "" :texthl hint})))
 
 ;; LSP naming changed between neovim 0.6 and 0.7 onward
 (if (= (nvim.fn.has :nvim-0.6) 1)
@@ -31,14 +32,14 @@
 
 ;; Configure server features
 (let [handlers {:textDocument/publishDiagnostics (vim.lsp.with vim.lsp.diagnostic.on_publish_diagnostics
-                                                               {:severity_sort true
-                                                                :update_in_insert false
-                                                                :underline true
-                                                                :virtual_text false})
+                                                   {:severity_sort true
+                                                    :update_in_insert false
+                                                    :underline true
+                                                    :virtual_text false})
                 :textDocument/hover (vim.lsp.with vim.lsp.handlers.hover
-                                                  {:border :single})
+                                      {:border :single})
                 :textDocument/signatureHelp (vim.lsp.with vim.lsp.handlers.signature_help
-                                                          {:border :single})}
+                                              {:border :single})}
       capabilities (cmplsp.default_capabilities)
       on_attach (fn [client bufnr]
                   (do
@@ -98,6 +99,8 @@
   (lsp.gopls.setup {: on_attach : handlers : capabilities})
   ;; C/Cpp
   (lsp.clangd.setup {: on_attach : handlers : capabilities})
+  ;; rust
+  (lsp.rust_analyzer.setup {: on_attach : handlers : capabilities})
   ;; JavaScript and TypeScript
   (lsp.tsserver.setup {: on_attach : handlers : capabilities})
   ;; html / css / json

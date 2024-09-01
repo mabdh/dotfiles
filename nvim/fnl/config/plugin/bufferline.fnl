@@ -4,10 +4,69 @@
 (fn is-ft [b ft]
   (= (. (. vim.bo b) :filetype) ft))
 
+(fn buf_kill [kill-command bufnr]
+  (set-forcibly! kill-command (or kill-command :bd))
+  (when (or (= bufnr 0) (= bufnr nil))
+    (set-forcibly! bufnr (vim.api.nvim_get_current_buf)))
+  (local bufname (vim.api.nvim_buf_get_name bufnr))
+  (var warning nil)
+  (if (. (. vim.bo bufnr) :modified)
+      (set warning
+           (string.format "No write since last change for (%s)"
+                          (vim.fn.fnamemodify bufname ":t")))
+      (= (vim.api.nvim_buf_get_option bufnr :buftype) :terminal)
+      (set warning (string.format "Terminal %s will be killed" bufname)))
+  (when warning
+    (vim.ui.input {:prompt (string.format "%s. Close it anyway? [y]es or [n]o (default: no): "
+                                          warning)}
+                  (fn [choice]
+                    (when (and (not= choice nil) (choice:match :ye?s?))
+                      (buf-force-kill kill-command bufnr))))
+    (lua "return "))
+  (local windows (vim.tbl_filter (fn [win]
+                                   (= (vim.api.nvim_win_get_buf win) bufnr))
+                                 (vim.api.nvim_list_wins)))
+  (local buffers (vim.tbl_filter (fn [buf]
+                                   (and (vim.api.nvim_buf_is_valid buf)
+                                        (. (. vim.bo buf) :buflisted)))
+                                 (vim.api.nvim_list_bufs)))
+  (when (and (> (length buffers) 1) (> (length windows) 0))
+    (each [i v (ipairs buffers)]
+      (when (= v bufnr)
+        (local prev-buf-idx (or (and (= i 1) (length buffers)) (- i 1)))
+        (local prev-buffer (. buffers prev-buf-idx))
+        (each [_ win (ipairs windows)]
+          (vim.api.nvim_win_set_buf win prev-buffer)))))
+  (when (and (vim.api.nvim_buf_is_valid bufnr) (. (. vim.bo bufnr) :buflisted))
+    (vim.cmd (string.format "%s %d" kill-command bufnr))))
+
+(fn buf-force-kill [kill-command bufnr]
+  (set-forcibly! kill-command (or kill-command :bd))
+  (when (or (= bufnr 0) (= bufnr nil))
+    (set-forcibly! bufnr (vim.api.nvim_get_current_buf)))
+  (local bufname (vim.api.nvim_buf_get_name bufnr))
+  (local windows (vim.tbl_filter (fn [win]
+                                   (= (vim.api.nvim_win_get_buf win) bufnr))
+                                 (vim.api.nvim_list_wins)))
+  (set-forcibly! kill-command (.. kill-command "!"))
+  (local buffers (vim.tbl_filter (fn [buf]
+                                   (and (vim.api.nvim_buf_is_valid buf)
+                                        (. (. vim.bo buf) :buflisted)))
+                                 (vim.api.nvim_list_bufs)))
+  (when (and (> (length buffers) 1) (> (length windows) 0))
+    (each [i v (ipairs buffers)]
+      (when (= v bufnr)
+        (local prev-buf-idx (or (and (= i 1) (length buffers)) (- i 1)))
+        (local prev-buffer (. buffers prev-buf-idx))
+        (each [_ win (ipairs windows)]
+          (vim.api.nvim_win_set_buf win prev-buffer)))))
+  (when (and (vim.api.nvim_buf_is_valid bufnr) (. (. vim.bo bufnr) :buflisted))
+    (vim.cmd (string.format "%s %d" kill-command bufnr))))
+
 (bufferline.setup {:options {:mode :buffers
                              :numbers :none
                              :close_command (fn [bufnr]
-                                              (M.buf_kill :bd bufnr false))
+                                              (buf_kill :bd bufnr false))
                              :right_mouse_command "vert sbuffer %d"
                              :left_mouse_command "buffer %d"
                              :middle_mouse_command nil
